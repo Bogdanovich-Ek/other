@@ -1,74 +1,99 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Мой вишлист — что подарить: описания и ссылки">
-  <title> Мой вишлист</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b0b0d'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23ff2e3f'>&#9829;</text></svg>">
+  <meta name="description" content="my wishlist — gift ideas with descriptions and links">
+  <title>my wishlist ✦ reputation</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23050505'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23d9b45e'>&#9829;</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@300;400;500;600;700&family=Manrope:wght@400;600;700;800&family=Pirata+One&family=Playfair+Display:wght@500;700;900&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <p class="hero-eyebrow">Wishlist · пожелания</p>
-      <h1 class="hero-title">Мой <span class="accent">вишлист</span></h1>
+  <!-- ── Hero: full-screen photo, newspaper-style headline ── -->
+  <section class="screen hero" id="top">
+    <span class="side-text side-right" aria-hidden="true">reputation · reputation · reputation · reputation</span>
+    <span class="side-text side-left" aria-hidden="true">my wishlist · my wishlist · my wishlist · my wishlist</span>
 
+    <div class="hero-inner">
+      <p class="kicker">reputation · the list · 2026</p>
+      <h1 class="hero-title">
+        <span class="line small">the</span>
+        <span class="line big">wishlist</span>
+        <span class="line over">my reputation era</span>
+      </h1>
+
+      <!-- ✏️ WRITE YOUR TEXT: personal comment on the main page.
+           Note: the gothic font works for English letters. For Russian text
+           it will fall back to an elegant serif automatically. -->
       <p class="hero-comment">
-        Заранее спасибо и предупреждаю, что пункты в вишлисте расставлены по степени хотения: от наибольшей до наименьшей. 
-        Я вписывала все реальные хотелки, многие НЕ РАССЧИТАНЫ на одного человека. Я буду рада, если даже если от всех будет один подарок в случае дороговизны.
+        Всем заранее спасибо и предупреждаю, что я просто написала все хотелки, и многое здесь НЕ РАССЧИТАНО на одного человека,
+        в силу своей дороговизны. Надеюсь,это вас не напряжет ♥
       </p>
 
       <p class="hero-divider" aria-hidden="true">✦ ✦ ✦</p>
-    </header>
+      <p class="hero-stats" id="stats"></p>
+    </div>
 
-    <main>
-      <div class="toolbar">
-        <p class="counter" id="stats"></p>
-        <button class="btn-red" id="addBtn" type="button">＋ Добавить пункт</button>
+    <p class="scroll-hint" aria-hidden="true">scroll down ↓</p>
+  </section>
+
+  <div class="gap"></div>
+
+  <!-- ── Wishlist items: each one has its own photo ── -->
+  <main id="giftList" aria-live="polite" aria-label="Gift list"></main>
+
+  <!-- Add button — quiet, after the last item (visible to the owner only) -->
+  <button class="add-after" id="addBtn" type="button">＋ add item</button>
+
+  <div class="gap"></div>
+
+  <!-- ── The end: pure black ── -->
+  <footer class="screen footer">
+    <div class="footer-inner">
+      <p class="footer-gothic">the end</p>
+      <p>made with <span class="heart">♥</span></p>
+      <p class="credit">photos: cr. boowonie</p>
+      <button class="text-btn" id="resetBtn" type="button">reset the list</button>
+      <button class="text-btn owner-link" id="ownerBtn" type="button">for owner</button>
+      <div class="owner-form" id="ownerForm" hidden>
+        <input id="ownerPass" type="password" placeholder="owner password" autocomplete="off">
+        <button type="button" class="btn-ghost" id="ownerEnter">enter</button>
       </div>
+    </div>
+  </footer>
 
-      <section class="list" id="giftList" aria-live="polite" aria-label="Список подарков"></section>
-    </main>
-
-    <footer class="site-footer">
-      <span>сделано с <span class="heart">♥</span></span>
-      <button class="text-btn" id="resetBtn" type="button">Сбросить список</button>
-    </footer>
-  </div>
-
-  <!-- Модальное окно добавления / редактирования пункта -->
+  <!-- Modal: add / edit an item -->
   <div class="modal-backdrop" id="modalBackdrop" hidden>
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <h2 id="modalTitle">Новый пункт</h2>
+      <h2 id="modalTitle">new item</h2>
       <form id="giftForm">
         <label class="field">
-          Название *
-          <input id="fName" maxlength="80" placeholder="Например: наушники Sony WH-1000XM5" required>
+          Name *
+          <input id="fName" maxlength="80" placeholder="e.g. Sony WH-1000XM5 headphones" required>
         </label>
 
         <label class="field">
-          Описание
-          <textarea id="fDesc" rows="3" maxlength="500" placeholder="Какой именно: цвет, модель, комплектация, где продаётся…"></textarea>
+          Description
+          <textarea id="fDesc" rows="3" maxlength="500" placeholder="Which one exactly: color, model, bundle, where it is sold…"></textarea>
         </label>
 
-        <div class="form-row">
-          <label class="field">
-            Цена
-            <input id="fPrice" maxlength="40" placeholder="напр. до 10 000 ₽">
-          </label>
-          <label class="field">
-            Ссылка
-            <input id="fLink" type="url" placeholder="https://…">
-          </label>
+        <label class="field">
+          Price
+          <input id="fPrice" maxlength="40" placeholder="e.g. up to 10 000 ₽">
+        </label>
+
+        <div class="field">
+          Links — add as many as you like
+          <div id="linksEditor"></div>
+          <button type="button" class="add-link-btn" id="addLinkBtn">＋ add link</button>
         </div>
 
         <div class="modal-actions">
-          <button type="button" class="btn-ghost" id="cancelBtn">Отмена</button>
-          <button type="submit" class="btn-red">Сохранить</button>
+          <button type="button" class="btn-ghost" id="cancelBtn">Cancel</button>
+          <button type="submit" class="btn-gold">Save</button>
         </div>
       </form>
     </div>
