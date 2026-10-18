@@ -148,10 +148,11 @@ const DEFAULT_GIFTS = [
       'Хочу винил. Я заказала один — это вызывает привыкание. Если захотите, ' +
       'то именно винил, а не CD\n' +
       'Из желаемого:\n' +
-      '— Taylor Swift: любой альбом после 2017 включительно, без последнего\n' +
+      '— Taylor Swift: любой альбом после 2017 включительно, без последнего ( первая ссылка на тгк с очень хорошими ценами )\n' +
       '— Bad Omens: «The Death Of Peace Of Mind» — уже нашла, ссылки ниже',
     price: '200+ BYN',
     links: [
+      { name: 'tgk', url: 'https://t.me/usgroove' },
       { name: 'Bad Omens — DOPOM', url: 'https://ozon.by/product/eksklyuzivnyy-vinil-bad-omens-death-of-peace-of-mind-v-serebristom-oformlenii-lpsan-5616580466/?at=1sSo1QmuzwRykESV5hRH82Vr0SBRoYaS&sh=zWMzu8rkEg' },
       { name: 'Taylor Swift — folklore', url: 'https://ozon.by/product/vinilovaya-plastinka-taylor-swift-folklore-beige-2lp-album-3695909052/?at=1sSo1S5DrmqSZFc53hfFcSuBkXE5ERpF&sh=zWMzu1Y3-w' },
     ],
