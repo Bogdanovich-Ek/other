@@ -1,73 +1,160 @@
 'use strict';
 
 /* ============================================================================
-   ✏️  ВАШ СПИСОК ПОДАРКОВ — редактируйте прямо здесь!
+   ✏️  YOUR WISHLIST — edit it right here!
 
-   Как добавить пункт: скопируйте блок { ... } и поменяйте текст.
-     name        — название подарка
-     description — описание: какой именно (цвет, размер, модель, где купить)
-     price       — примерная цена, например "до 3 000 ₽" (можно оставить "")
-     link        — ссылка на магазин (можно оставить "")
+   To add an item: copy a { ... } block and change the text.
+     name        — the gift name
+     description — which exactly you want (color, size, model, where to buy)
+     price       — rough price, e.g. "up to $150" (or leave "")
+     links       — shop links, as many as you like:
+                   links: [
+                     { name: 'Ozon', url: 'https://…' },
+                     { name: 'WB',   url: 'https://…' },
+                   ],
+                   or plain strings without names:
+                   links: ['https://…', 'https://…']
+                   (or leave empty: links: [])
 
-   Личный комментарий на главной странице редактируется в файле index.html —
-   ищите пометку «✏️ ВПИШИТЕ СВОЙ ТЕКСТ».
+   Item background photos live in the wishlist folder (as uploaded to
+   GitHub) — they are assigned to items in order and cycle around.
 
-   После правок сохраните файл и запушьте изменения на GitHub.
-   ⚠️ Если вы нажимали кнопки на сайте, список сохраняется в браузере
-   (localStorage), и тогда правки кода не видны — нажмите «Сбросить список»
-   внизу страницы, чтобы вернуться к варианту из этого файла.
+   The personal comment on the main page is edited in index.html —
+   look for the «✏️ WRITE YOUR TEXT» mark.
+
+   🔒 Editing is yours only: guests don't see the buttons. The owner
+   password is set in ADMIN_PASSWORD below — make sure to replace it.
+   Note: this hides the buttons, it's not real protection — the site code
+   is public, a tech-savvy guest will find the password.
+
+   After editing save the file and push it to GitHub.
+   ⚠️ If you used the buttons on the site, the list is stored in the
+   browser (localStorage) and code edits won't be visible — press
+   «reset the list» in the page footer to get back to this file's version.
 ============================================================================ */
 
+// 🔒 owner password — make sure to replace it with your own
+const ADMIN_PASSWORD = 'reputation';
+
 const DEFAULT_GIFTS = [
-  // ── Пример заполненного пункта (отредактируйте или удалите) ─────────────
+  // ── A filled-in sample item (edit it or remove) ──────────────────────────
   {
-    name: 'Пример: беспроводные наушники',
+    name: 'Option 1  — Jewelry',
     description:
-      'Это пример заполнения. Напишите, что именно хотите: модель, цвет, ' +
-      'комплектацию и где удобнее покупать.',
-    price: 'до 12 000 ₽',
-    link: '',
+      'Возвращаю эпоху змеиных украшений, тем более тут появилось много новых красивых' +
+      'Кольца: 17.0' +
+      'Вообще, я все из этих предложенных хочу купить, будет круто, если поможете сократить этот список)',
+    price: '72 - 268 BYN',
+    links: [
+      { name: 'ORO', url: 'https://oro.by/katalog/kolca/00624-10-090401-00-silver' },
+      { name: 'Ziko', url: 'https://ziko.by/catalog/koltsa/koltso-02101625/' },
+      { name: 'Ziko', url: 'https://ziko.by/catalog/sergi/sergi-03101625/' },
+      { name: 'ORO', url: 'https://oro.by/katalog/kolca/00011-10-090101-00-silver' },
+      { name: 'Ziko', url: 'https://ziko.by/catalog/brasleti/braslet-06401625/' },
+    ],
   },
 
-  // ── Места для ваших пунктов — просто замените текст ниже ↓ ──────────────
+  // ── Places for your items — just replace the text below ↓ ───────────────
   {
-    name: 'Пункт 1 — впишите название',
-    description: 'Место для описания: что за вещь и какой именно вариант вам хочется.',
-    price: '',
-    link: '',
+    name: 'Option 2 — Perfume',
+    description: 'Я определенно стала парфюмерным маньяком и наркоманом. На данный момент мой любимый Dark Vinyl Musk. Полнообъемные они стоят как почка, так что можете любой объем подарить (можно 3, 5, 8, 10, 15, 50 мл), на сколько не жалко' +
+    'Я еще хотела попробовать Amouage Lyric Woman, но я вообще забылась в оффлайн магазине и купила 5 других. Этот точно мленький объем попробовать(и полный объем стоит уже как крыло самолета))'+
+    'Вообще, я буду очееень рада каким-то другим духам. Можете подобрать по моему вайбу) какой-нибудь набор малообъемных или одни определенные. Только типичные женские я не особо люлю, в основном мне нравятся унисекс или нетипичные' +
+    'Как вариант можно еще просто сертификат.  Магазин, который я прикрепила очень хороший, по моему опыту самые выгодные цены, большой выбор'.
+    price: '39 - 463 BYN',
+    links: [
+       { name: 'favorite', url: 'https://www.parfumeria.by/?id=Parfum-Bohoboco-Dark-Vinyl-Musk-Perfume' },
+       { name: 'try', url: 'https://www.parfumeria.by/?id=10838' }
+    ],
   },
   {
-    name: 'Пункт 2 — впишите название',
-    description: 'Место для описания: что за вещь и какой именно вариант вам хочется.',
-    price: '',
-    link: '',
+    name: 'Option 3 — Mercy',
+    description: 'Немного мемный пункт) чего еще просить на 20-летие... У меня просто минимум три врача, к которым я хожу постоянно в клинике "Мерси", я видела, что там есть сертификаты на сумму 50, 100, 150 и тд. Очень неплохой вариант',
+    price: '50 - 200 BYN',
+    links: [{ name: 'Mersy', url: 'https://mercimed.by/search/?q=%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82&btn-search=' }],
   },
   {
-    name: 'Пункт 3 — впишите название',
-    description: 'Место для описания: что за вещь и какой именно вариант вам хочется.',
-    price: '',
-    link: '',
+    name: 'Option 4 — Сlothes',
+    description: 'Одежды много не бывает, тем более я вернулась к своим любимым шоурумам. Сертификаты туда можно',
+    price: 'ND',
+    links: [       
+       { name: '9.22', url: 'https://922.by/' },
+       { name: 'CODI', url: 'https://codi.by/' }
+       { name: 'MUA', url: 'https://mua.shop/' }
+  ],
+  },
+
+  {
+    name: 'Option 5 — Cosmetics',
+    description: 'Теперь мне нужно много и уходовой косметики, и декоративной. Можно сертификат в один из прикрепленных магазинов '+
+    'А еще мне очень нужны косметички. Их много не бывает, на свой выбор какую-нибудь можно'.
+    price: ' ND',
+    links: [
+       { name: 'golden apple', url: 'https://goldapple.by/?srsltid=AU7gw4VgmwWpaC_uhE5P52y59VbqswIpyJySe7ZV9pqtdVml6b0JUd-r' },
+       { name: 'asiashop', url: 'https://asiashop.by/spets-tsena/podarochnyj-sertifikat' },
+       { name: 'missha', url: 'https://misshacosmetics.by/podarochnye_sertifikaty-23895-s/' }
+    ],
+  },
+   
+  {
+    name: 'Option 6 — WB',
+    description: 'Тут подборка нуждных вещей с вб, это примеры вещей, которые нужны: плед, подставка под пластинки и под все остальное на полки' +
+    'А вот светильник-кот не пример, это просто имба, которую я очень хочу)'.
+    price: '  ND - 168 BYN',
+    links: [       
+       { name: 'Cat', url: 'https://www.wildberries.by/catalog/179233395/detail.aspx' },
+       { name: 'Rack', url: 'https://www.wildberries.by/catalog/978110353/detail.aspx' }
+       { name: 'Rack', url: 'https://www.wildberries.by/catalog/848499659/detail.aspx' }
+       { name: 'Rug', url: 'https://www.wildberries.by/catalog/44371793/detail.aspx' }
+  ],
   },
   {
-    name: 'Пункт 4 — впишите название',
-    description: 'Место для описания: что за вещь и какой именно вариант вам хочется.',
-    price: '',
-    link: '',
+    name: 'Option 7 — Vinyl',
+    description: 'Хочу винил. я заказала один, это вызывавет привыкание. Если захотите, то именно винил, а cd',
+    'из жеалемого:\n Tailor Swift любой альбом после 2017 включительно, без последнего,\n Bad Omens "Death Of Peace Of Mind"'
+    price: '200+ BYN',
+    links: [
+   { name: 'DOPOM', url: 'https://ozon.by/product/eksklyuzivnyy-vinil-bad-omens-death-of-peace-of-mind-v-serebristom-oformlenii-lpsan-5616580466/?at=1sSo1QmuzwRykESV5hRH82Vr0SBRoYaS&sh=zWMzu8rkEg' },
+   { name: 'folklore', url: 'https://ozon.by/product/vinilovaya-plastinka-taylor-swift-folklore-beige-2lp-album-3695909052/?at=1sSo1S5DrmqSZFc53hfFcSuBkXE5ERpF&sh=zWMzu1Y3-w' },     
+],
+  },
+  {
+    name: 'Option 8 — Everything for training',
+    description: 'Последнее, но точно не последнее по значимости( да вообще почти первое) - это мои тренировки. Идеальный для меня подарок - это будет подарочный абонемент. Тут я уже не шарю, там можно и полный купить на какой-то срок, я видела еще абонементы на 50% скидку. Это нужно спрашивать в тг лучше, и потом просто прийти по андесу, чтобы тренер подписал. Скажите, что мне) интересно, что скажет. Если будете брать, то берите на 3 занятия в неделю или безлимит на какой-то срок( но это дороговато).'+
+    'Еще можно мне сертификат в магаз, где именно снаряжение для единоборств есть. Мне, например, неплохо бы поменять перчатки и закупиться всевозможной защитой',
+    price: 'ND',
+    links: [ { name: 'Personal Safety Academy', url: 'https://kravmagabelarus.by/' }],
   },
 ];
 
 /* ============================================================================
-   Дальше идёт код сайта — обычно его менять не нужно.
+   The rest is site code — normally you don't need to change it.
 ============================================================================ */
 
-const STORAGE_KEY = 'wishlist.gifts.v5';
+const STORAGE_KEY = 'wishlist.gifts.v6';
+const ADMIN_KEY = 'wishlist.admin'; // «owner mode» flag in the browser
+// 🔒 owner password — make sure to replace it with your own
+const ADMIN_PASSWORD = 'reputation';
+
+// фоны пунктов — прямые ссылки на фото в хранилище репозитория
+const ITEM_PHOTOS = [
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/ARE%20YOU%20READY%20FOR%20IT%E2%80%A6%E2%80%A6_.jpeg',                   // кольцо-змейка
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/reputation%20%E2%80%94%20taylor%20swift%20%E2%80%94%20aesthetic.jpeg',  // питон
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/-%20reputation.jpeg',                                                   // газеты
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/taylor%20swift%20_%20reputation%20aesthetic.jpeg',                      // конфетти
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/reputation%20%E2%80%98taylor%20swift%E2%80%99%20aesthetic.jpeg',        // губы
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/reputation%20_%20taylor%20swift.jpeg',                                  // котик
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/cr_%20boowonie%20_%20use%20credits.%20%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D1%83%D0%B9%D1%82%D0%B5%20%D0%BA%D1%80%D0%B5%D0%B4%D0%B8%D1%82%D1%8B%2C%20%D0%B5%D1%81%D0%BB%D0%B8%20%D1%80%D0%B5%D0%BF%D0%BE%D1%81%D1%82%D0%B8%D1%82%D0%B5%2C%20%D1%82%D0%BA%20%D1%84%D0%BE%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D0%B8_%D0%BE%D0%B1%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B8%20%D0%BC%D0%BE%D0%B8', // винил
+  'https://raw.githubusercontent.com/Bogdanovich-Ek/other/main/wishlist/eli%20king.jpeg',                                                       // боксёрский зал
+];
 
 const state = {
   gifts: [],
-  editingId: null, // id пункта в режиме редактирования (null = добавление)
+  editingId: null, // id of the item being edited (null = adding a new one)
+  admin: false,    // true — owner mode is on, buttons are visible
 };
 
-/* ── Элементы страницы ──────────────────────────────────────────────────── */
+/* ── Page elements ──────────────────────────────────────────────────────── */
 
 const listEl        = document.getElementById('giftList');
 const statsEl       = document.getElementById('stats');
@@ -79,11 +166,16 @@ const form          = document.getElementById('giftForm');
 const fName         = document.getElementById('fName');
 const fDesc         = document.getElementById('fDesc');
 const fPrice        = document.getElementById('fPrice');
-const fLink         = document.getElementById('fLink');
+const linksEditor   = document.getElementById('linksEditor');
+const addLinkBtn    = document.getElementById('addLinkBtn');
 const cancelBtn     = document.getElementById('cancelBtn');
+const ownerBtn      = document.getElementById('ownerBtn');
+const ownerForm     = document.getElementById('ownerForm');
+const ownerPass     = document.getElementById('ownerPass');
+const ownerEnter    = document.getElementById('ownerEnter');
 const toastEl       = document.getElementById('toast');
 
-/* ── Утилиты ────────────────────────────────────────────────────────────── */
+/* ── Helpers ────────────────────────────────────────────────────────────── */
 
 const esc = (value = '') =>
   String(value).replace(/[&<>"']/g, (ch) => ({
@@ -95,7 +187,7 @@ const newId = () =>
     ? crypto.randomUUID()
     : 'id-' + Date.now() + '-' + Math.random().toString(36).slice(2);
 
-// пропускаем только безопасные http(s)-ссылки
+// allow only safe http(s) links
 function safeUrl(raw) {
   try {
     const url = new URL(raw, location.href);
@@ -113,7 +205,7 @@ function showToast(message) {
   toastTimer = setTimeout(() => toastEl.classList.remove('show'), 2200);
 }
 
-/* ── Загрузка и сохранение ──────────────────────────────────────────────── */
+/* ── Load and save ──────────────────────────────────────────────────────── */
 
 function loadGifts() {
   try {
@@ -123,9 +215,9 @@ function loadGifts() {
       if (Array.isArray(parsed)) return parsed;
     }
   } catch (err) {
-    console.warn('Не удалось прочитать сохранённый список:', err);
+    console.warn('Could not read the saved list:', err);
   }
-  // первый визит — берём список из кода выше
+  // first visit — take the list from the code above
   return DEFAULT_GIFTS.map((gift) => ({ ...gift, id: newId() }));
 }
 
@@ -133,34 +225,55 @@ function saveGifts() {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state.gifts));
   } catch (err) {
-    console.warn('Не удалось сохранить список:', err);
+    console.warn('Could not save the list:', err);
   }
 }
 
-/* ── Отрисовка ──────────────────────────────────────────────────────────── */
+/* ── Rendering ──────────────────────────────────────────────────────────── */
+
+// item links: both the new format (links array) and the old one (single link)
+function normalizeLinks(gift) {
+  if (Array.isArray(gift.links)) return gift.links;
+  return gift.link ? [gift.link] : [];
+}
+
+function linksHTML(gift) {
+  return normalizeLinks(gift).map((item) => {
+    const isObject = item && typeof item === 'object';
+    const url = safeUrl(isObject ? item.url : item);
+    if (!url) return '';
+    const label = isObject && item.name ? item.name : 'open';
+    return `<a class="shop-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${esc(label)} ↗</a>`;
+  }).join('');
+}
 
 function rowHTML(gift, index) {
-  const url = gift.link ? safeUrl(gift.link) : null;
   const desc = gift.description
     ? esc(gift.description)
-    : '<em>Описание пока не добавлено…</em>';
-  const num = String(index + 1).padStart(2, '0');
+    : '<em>No description yet…</em>';
+  // each item has its own photo backdrop; photos cycle through ITEM_PHOTOS
+  const photo = ITEM_PHOTOS[index % ITEM_PHOTOS.length];
 
   return `
-    <article class="row" data-id="${esc(gift.id)}"
-             style="animation-delay:${Math.min(index * 40, 320)}ms">
-      <div class="row-num" aria-hidden="true">${num}</div>
-      <div class="row-body">
+    <article class="screen item" data-id="${esc(gift.id)}" style="--photo:url('${photo}')">
+      <div class="item-inner">
+        <div class="row-top">
+          <span class="item-no">no. ${index + 1}</span>
+          <div class="row-actions">
+            <button type="button" class="mini-btn" data-action="edit" title="Edit" aria-label="Edit">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+            </button>
+            <button type="button" class="mini-btn" data-action="delete" title="Delete" aria-label="Delete">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2m-9 0 1 14h8l1-14"/></svg>
+            </button>
+          </div>
+        </div>
         <h3 class="row-name">${esc(gift.name)}</h3>
         <p class="row-desc">${desc}</p>
         <div class="row-meta">
           ${gift.price ? `<span class="price-chip">${esc(gift.price)}</span>` : ''}
-          ${url ? `<a class="shop-link" href="${esc(url)}" target="_blank" rel="noopener noreferrer">Перейти ↗</a>` : ''}
+          ${linksHTML(gift)}
         </div>
-      </div>
-      <div class="row-actions">
-        <button type="button" class="mini-btn" data-action="edit">изм.</button>
-        <button type="button" class="mini-btn" data-action="delete">удал.</button>
       </div>
     </article>`;
 }
@@ -170,27 +283,69 @@ function render() {
     listEl.innerHTML = `
       <div class="empty">
         <span class="big" aria-hidden="true">///</span>
-        <p>Список пуст. Добавьте пункт через кнопку ниже или впишите его в файле <b>script.js</b>.</p>
-        <button type="button" class="btn-red" id="emptyAddBtn">＋ Добавить пункт</button>
+        <p>The list is empty. Add an item with the button below or edit <b>script.js</b>.</p>
+        <button type="button" class="btn-gold" id="emptyAddBtn">＋ add item</button>
       </div>`;
   } else {
     listEl.innerHTML = state.gifts.map(rowHTML).join('');
   }
 
-  statsEl.innerHTML = `пунктов: <b>${state.gifts.length}</b>`;
+  statsEl.innerHTML = `items: <b>${state.gifts.length}</b>`;
 }
 
-/* ── Модальное окно ─────────────────────────────────────────────────────── */
+/* ── Modal ──────────────────────────────────────────────────────────────── */
+
+// одна строка редактора ссылок: [название] [адрес] [✕]
+function addLinkRow(name = '', url = '') {
+  const row = document.createElement('div');
+  row.className = 'link-row';
+  row.innerHTML = `
+    <input class="link-name" maxlength="30" placeholder="Name (e.g. Ozon)">
+    <input class="link-url" type="url" placeholder="https://…">
+    <button type="button" class="link-remove" title="Remove link" aria-label="Remove link">✕</button>`;
+  row.querySelector('.link-name').value = name;
+  row.querySelector('.link-url').value = url;
+  linksEditor.appendChild(row);
+}
+
+function buildLinksEditor(gift = null) {
+  linksEditor.innerHTML = '';
+  const links = gift ? normalizeLinks(gift) : [];
+  const list = links.length ? links : [''];
+  list.forEach((item) => {
+    const isObject = item && typeof item === 'object';
+    addLinkRow(isObject ? item.name || '' : '', isObject ? item.url || '' : item || '');
+  });
+}
+
+function collectLinks() {
+  return [...linksEditor.querySelectorAll('.link-row')]
+    .map((row) => ({
+      name: row.querySelector('.link-name').value.trim(),
+      url: row.querySelector('.link-url').value.trim(),
+    }))
+    .filter((link) => link.url);
+}
+
+linksEditor.addEventListener('click', (event) => {
+  const btn = event.target.closest('.link-remove');
+  if (btn) btn.closest('.link-row').remove();
+});
+
+addLinkBtn.addEventListener('click', () => {
+  addLinkRow();
+  linksEditor.lastElementChild.querySelector('.link-url').focus();
+});
 
 function openModal(gift = null) {
   state.editingId = gift ? gift.id : null;
-  modalTitle.textContent = gift ? 'Редактировать пункт' : 'Новый пункт';
+  modalTitle.textContent = gift ? 'edit item' : 'new item';
   fName.value = gift ? gift.name : '';
   fDesc.value = gift ? gift.description || '' : '';
   fPrice.value = gift ? gift.price || '' : '';
-  fLink.value = gift ? gift.link || '' : '';
+  buildLinksEditor(gift);
   modalBackdrop.hidden = false;
-  document.body.style.overflow = 'hidden'; // не прокручивать фон под окном
+  document.body.style.overflow = 'hidden'; // keep the background from scrolling
   fName.focus();
 }
 
@@ -225,16 +380,17 @@ form.addEventListener('submit', (event) => {
     name,
     description: fDesc.value.trim(),
     price: fPrice.value.trim(),
-    link: fLink.value.trim(),
+    links: collectLinks(),
+    link: '', // the old single-link field, kept empty
   };
 
   if (state.editingId) {
     const gift = state.gifts.find((g) => g.id === state.editingId);
     if (gift) Object.assign(gift, data);
-    showToast('Изменения сохранены ✅');
+    showToast('Changes saved ✅');
   } else {
     state.gifts.push({ id: newId(), ...data });
-    showToast('Пункт добавлен');
+    showToast('Item added');
   }
 
   saveGifts();
@@ -242,7 +398,7 @@ form.addEventListener('submit', (event) => {
   closeModal();
 });
 
-/* ── Действия на строках ────────────────────────────────────────────────── */
+/* ── Item actions ───────────────────────────────────────────────────────── */
 
 listEl.addEventListener('click', (event) => {
   if (event.target.closest('#emptyAddBtn')) {
@@ -253,36 +409,76 @@ listEl.addEventListener('click', (event) => {
   const actionBtn = event.target.closest('[data-action]');
   if (!actionBtn) return;
 
-  const row = actionBtn.closest('.row');
+  const row = actionBtn.closest('.item');
   const gift = state.gifts.find((g) => g.id === row.dataset.id);
   if (!gift) return;
 
   if (actionBtn.dataset.action === 'edit') {
     openModal(gift);
   } else if (actionBtn.dataset.action === 'delete') {
-    if (confirm(`Удалить «${gift.name}» из списка?`)) {
+    if (confirm(`Delete "${gift.name}" from the list?`)) {
       state.gifts = state.gifts.filter((g) => g.id !== gift.id);
       saveGifts();
       render();
-      showToast('Пункт удалён');
+      showToast('Item deleted');
     }
   }
 });
 
-/* ── Сброс ──────────────────────────────────────────────────────────────── */
+/* ── Owner mode ─────────────────────────────────────────────────────────── */
+
+function applyAdmin() {
+  document.body.classList.toggle('is-admin', state.admin);
+  ownerForm.hidden = state.admin; // hide the password form when unlocked
+}
+
+ownerBtn.addEventListener('click', () => {
+  if (state.admin) {
+    state.admin = false;
+    localStorage.removeItem(ADMIN_KEY);
+    applyAdmin();
+    showToast('Owner mode off');
+    return;
+  }
+  ownerForm.hidden = !ownerForm.hidden;
+  if (!ownerForm.hidden) ownerPass.focus();
+});
+
+function tryUnlock() {
+  if (ownerPass.value === ADMIN_PASSWORD) {
+    state.admin = true;
+    localStorage.setItem(ADMIN_KEY, '1');
+    ownerPass.value = '';
+    applyAdmin();
+    showToast('Owner mode on ✅');
+  } else {
+    ownerPass.value = '';
+    ownerPass.focus();
+    showToast('Wrong password');
+  }
+}
+
+ownerEnter.addEventListener('click', tryUnlock);
+ownerPass.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter') tryUnlock();
+});
+
+/* ── Reset ──────────────────────────────────────────────────────────────── */
 
 resetBtn.addEventListener('click', () => {
   const message =
-    'Сбросить список? Добавленное через сайт будет удалено, ' +
-    'вернётся список из файла script.js.';
+    'Reset the list? Everything added via the site will be removed ' +
+    'and the list from script.js will come back.';
   if (!confirm(message)) return;
   localStorage.removeItem(STORAGE_KEY);
   state.gifts = loadGifts();
   render();
-  showToast('Список сброшен');
+  showToast('List reset');
 });
 
-/* ── Запуск ─────────────────────────────────────────────────────────────── */
+/* ── Start ──────────────────────────────────────────────────────────────── */
 
 state.gifts = loadGifts();
+state.admin = localStorage.getItem(ADMIN_KEY) === '1';
+applyAdmin();
 render();
