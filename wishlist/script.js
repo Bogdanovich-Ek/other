@@ -53,7 +53,7 @@ const DEFAULT_GIFTS = [
       'если поможете сократить этот список)',
     price: '72 - 268 BYN',
     links: [
-      { name: 'ORO', url: 'https://oro.by/katalog/kolca/00624-10-090401-00-silver' },
+      { name: 'ORO', url: 'https://oro.by/katalog/kolca/00624-10-090101-00-silver' },
       { name: 'Ziko', url: 'https://ziko.by/catalog/koltsa/koltso-02101625/' },
       { name: 'Ziko', url: 'https://ziko.by/catalog/sergi/sergi-03101625/' },
       { name: 'ORO', url: 'https://oro.by/katalog/kolca/00011-10-090101-00-silver' },
