@@ -16,6 +16,12 @@
                    links: ['https://…', 'https://…']
                    (or leave empty: links: [])
 
+   ⚠️ CAREFUL WITH PUNCTUATION INSIDE THE BLOCKS:
+   — every line inside a block ends with a COMMA, except before a closing }
+   — a long description is glued from pieces with  +  at the end of a line
+     (a piece must end with a quote, then +, then the next piece in quotes)
+   — objects in the links list are separated by commas
+
    Item background photos live in the wishlist folder (as uploaded to
    GitHub) — they are assigned to items in order and cycle around.
 
@@ -37,13 +43,14 @@
 const ADMIN_PASSWORD = 'reputation';
 
 const DEFAULT_GIFTS = [
-  // ── A filled-in sample item (edit it or remove) ──────────────────────────
+  // ── Option 1 — Jewelry ───────────────────────────────────────────────────
   {
-    name: 'Option 1  — Jewelry',
+    name: 'Option 1 — Jewelry',
     description:
-      'Возвращаю эпоху змеиных украшений, тем более тут появилось много новых красивых' +
-      'Кольца: 17.0' +
-      'Вообще, я все из этих предложенных хочу купить, будет круто, если поможете сократить этот список)',
+      'Возвращаю эпоху змеиных украшений, тем более тут появилось много новых красивых\n' +
+      'Кольца: 17.0\n' +
+      'Вообще, я все из этих предложенных хочу купить — будет круто, ' +
+      'если поможете сократить этот список)',
     price: '72 - 268 BYN',
     links: [
       { name: 'ORO', url: 'https://oro.by/katalog/kolca/00624-10-090401-00-silver' },
@@ -54,76 +61,120 @@ const DEFAULT_GIFTS = [
     ],
   },
 
-  // ── Places for your items — just replace the text below ↓ ───────────────
+  // ── Option 2 — Perfume ───────────────────────────────────────────────────
   {
     name: 'Option 2 — Perfume',
-    description: 'Я определенно стала парфюмерным маньяком и наркоманом. На данный момент мой любимый Dark Vinyl Musk. Полнообъемные они стоят как почка, так что можете любой объем подарить (можно 3, 5, 8, 10, 15, 50 мл), на сколько не жалко' +
-    'Я еще хотела попробовать Amouage Lyric Woman, но я вообще забылась в оффлайн магазине и купила 5 других. Этот точно мленький объем попробовать(и полный объем стоит уже как крыло самолета))'+
-    'Вообще, я буду очееень рада каким-то другим духам. Можете подобрать по моему вайбу) какой-нибудь набор малообъемных или одни определенные. Только типичные женские я не особо люлю, в основном мне нравятся унисекс или нетипичные' +
-    'Как вариант можно еще просто сертификат.  Магазин, который я прикрепила очень хороший, по моему опыту самые выгодные цены, большой выбор'.
+    description:
+      'Я определенно стала парфюмерным маньяком и наркоманом. На данный момент ' +
+      'мой любимый Dark Vinyl Musk. Полнообъемные они стоят как почка, так что ' +
+      'можете любой объем подарить (можно 3, 5, 8, 10, 15, 50 мл) — на сколько не жалко\n' +
+      'Я еще хотела попробовать Amouage Lyric Woman, но я вообще забылась в ' +
+      'оффлайн магазине и купила 5 других. Этот точно маленький объем попробовать ' +
+      '(а полный объем стоит уже как крыло самолета))\n' +
+      'Вообще, я буду очень рада каким-то другим духам. Можете подобрать по моему ' +
+      'вайбу — какой-нибудь набор малообъемных или одни определенные. Только ' +
+      'типичные женские я не особо люблю, в основном мне нравятся унисекс или нетипичные\n' +
+      'Как вариант можно еще просто сертификат. Магазин, который я прикрепила, ' +
+      'очень хороший — по моему опыту, самые выгодные цены и большой выбор',
     price: '39 - 463 BYN',
     links: [
-       { name: 'favorite', url: 'https://www.parfumeria.by/?id=Parfum-Bohoboco-Dark-Vinyl-Musk-Perfume' },
-       { name: 'try', url: 'https://www.parfumeria.by/?id=10838' }
+      { name: 'favorite', url: 'https://www.parfumeria.by/?id=Parfum-Bohoboco-Dark-Vinyl-Musk-Perfume' },
+      { name: 'try', url: 'https://www.parfumeria.by/?id=10838' },
     ],
-  },
-  {
-    name: 'Option 3 — Mercy',
-    description: 'Немного мемный пункт) чего еще просить на 20-летие... У меня просто минимум три врача, к которым я хожу постоянно в клинике "Мерси", я видела, что там есть сертификаты на сумму 50, 100, 150 и тд. Очень неплохой вариант',
-    price: '50 - 200 BYN',
-    links: [{ name: 'Mersy', url: 'https://mercimed.by/search/?q=%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82&btn-search=' }],
-  },
-  {
-    name: 'Option 4 — Сlothes',
-    description: 'Одежды много не бывает, тем более я вернулась к своим любимым шоурумам. Сертификаты туда можно',
-    price: 'ND',
-    links: [       
-       { name: '9.22', url: 'https://922.by/' },
-       { name: 'CODI', url: 'https://codi.by/' }
-       { name: 'MUA', url: 'https://mua.shop/' }
-  ],
   },
 
+  // ── Option 3 — Mercy ─────────────────────────────────────────────────────
   {
-    name: 'Option 5 — Cosmetics',
-    description: 'Теперь мне нужно много и уходовой косметики, и декоративной. Можно сертификат в один из прикрепленных магазинов '+
-    'А еще мне очень нужны косметички. Их много не бывает, на свой выбор какую-нибудь можно'.
-    price: ' ND',
+    name: 'Option 3 — Mercy',
+    description:
+      'Немного мемный пункт) Чего еще просить на 20-летие… У меня просто минимум ' +
+      'три врача, к которым я хожу постоянно в клинике «Мерси». Я видела, что там ' +
+      'есть сертификаты на сумму 50, 100, 150 и т.д. Очень неплохой вариант',
+    price: '50 - 200 BYN',
     links: [
-       { name: 'golden apple', url: 'https://goldapple.by/?srsltid=AU7gw4VgmwWpaC_uhE5P52y59VbqswIpyJySe7ZV9pqtdVml6b0JUd-r' },
-       { name: 'asiashop', url: 'https://asiashop.by/spets-tsena/podarochnyj-sertifikat' },
-       { name: 'missha', url: 'https://misshacosmetics.by/podarochnye_sertifikaty-23895-s/' }
+      { name: 'Mersy', url: 'https://mercimed.by/search/?q=%D1%81%D0%B5%D1%80%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%82&btn-search=' },
     ],
   },
-   
+
+  // ── Option 4 — Clothes ───────────────────────────────────────────────────
+  {
+    name: 'Option 4 — Clothes',
+    description:
+      'Одежды много не бывает, тем более я вернулась к своим любимым шоурумам. ' +
+      'Сертификаты туда можно',
+    price: 'ND',
+    links: [
+      { name: '9.22', url: 'https://922.by/' },
+      { name: 'CODI', url: 'https://codi.by/' },
+      { name: 'MUA', url: 'https://mua.shop/' },
+    ],
+  },
+
+  // ── Option 5 — Cosmetics ─────────────────────────────────────────────────
+  {
+    name: 'Option 5 — Cosmetics',
+    description:
+      'Теперь мне нужно много и уходовой косметики, и декоративной. Можно ' +
+      'сертификат в один из прикрепленных магазинов\n' +
+      'А еще мне очень нужны косметички. Их много не бывает — на свой выбор ' +
+      'какую-нибудь можно',
+    price: 'ND',
+    links: [
+      { name: 'golden apple', url: 'https://goldapple.by/?srsltid=AU7gw4VgmwWpaC_uhE5P52y59VbqswIpyJySe7ZV9pqtdVml6b0JUd-r' },
+      { name: 'asiashop', url: 'https://asiashop.by/spets-tsena/podarochnyj-sertifikat' },
+      { name: 'missha', url: 'https://misshacosmetics.by/podarochnye_sertifikaty-23895-s/' },
+    ],
+  },
+
+  // ── Option 6 — WB ────────────────────────────────────────────────────────
   {
     name: 'Option 6 — WB',
-    description: 'Тут подборка нуждных вещей с вб, это примеры вещей, которые нужны: плед, подставка под пластинки и под все остальное на полки' +
-    'А вот светильник-кот не пример, это просто имба, которую я очень хочу)'.
-    price: '  ND - 168 BYN',
-    links: [       
-       { name: 'Cat', url: 'https://www.wildberries.by/catalog/179233395/detail.aspx' },
-       { name: 'Rack', url: 'https://www.wildberries.by/catalog/978110353/detail.aspx' }
-       { name: 'Rack', url: 'https://www.wildberries.by/catalog/848499659/detail.aspx' }
-       { name: 'Rug', url: 'https://www.wildberries.by/catalog/44371793/detail.aspx' }
-  ],
+    description:
+      'Тут подборка нужных вещей с WB, это примеры вещей, которые нужны: плед, ' +
+      'подставка под пластинки и под все остальное на полки\n' +
+      'А вот светильник-кот — не пример, это просто имба, которую я очень хочу)',
+    price: 'ND - 168 BYN',
+    links: [
+      { name: 'Cat', url: 'https://www.wildberries.by/catalog/179233395/detail.aspx' },
+      { name: 'Rack', url: 'https://www.wildberries.by/catalog/978110353/detail.aspx' },
+      { name: 'Rack', url: 'https://www.wildberries.by/catalog/848499659/detail.aspx' },
+      { name: 'Rug', url: 'https://www.wildberries.by/catalog/44371793/detail.aspx' },
+    ],
   },
+
+  // ── Option 7 — Vinyl ─────────────────────────────────────────────────────
   {
     name: 'Option 7 — Vinyl',
-    description: 'Хочу винил. я заказала один, это вызывавет привыкание. Если захотите, то именно винил, а cd',
-    'из жеалемого:\n Tailor Swift любой альбом после 2017 включительно, без последнего,\n Bad Omens "Death Of Peace Of Mind"'
+    description:
+      'Хочу винил. Я заказала один — это вызывает привыкание. Если захотите, ' +
+      'то именно винил, а не CD\n' +
+      'Из желаемого:\n' +
+      '— Taylor Swift: любой альбом после 2017 включительно, без последнего\n' +
+      '— Bad Omens: «The Death Of Peace Of Mind» — уже нашла, ссылки ниже',
     price: '200+ BYN',
     links: [
-   { name: 'DOPOM', url: 'https://ozon.by/product/eksklyuzivnyy-vinil-bad-omens-death-of-peace-of-mind-v-serebristom-oformlenii-lpsan-5616580466/?at=1sSo1QmuzwRykESV5hRH82Vr0SBRoYaS&sh=zWMzu8rkEg' },
-   { name: 'folklore', url: 'https://ozon.by/product/vinilovaya-plastinka-taylor-swift-folklore-beige-2lp-album-3695909052/?at=1sSo1S5DrmqSZFc53hfFcSuBkXE5ERpF&sh=zWMzu1Y3-w' },     
-],
+      { name: 'Bad Omens — DOPOM', url: 'https://ozon.by/product/eksklyuzivnyy-vinil-bad-omens-death-of-peace-of-mind-v-serebristom-oformlenii-lpsan-5616580466/?at=1sSo1QmuzwRykESV5hRH82Vr0SBRoYaS&sh=zWMzu8rkEg' },
+      { name: 'Taylor Swift — folklore', url: 'https://ozon.by/product/vinilovaya-plastinka-taylor-swift-folklore-beige-2lp-album-3695909052/?at=1sSo1S5DrmqSZFc53hfFcSuBkXE5ERpF&sh=zWMzu1Y3-w' },
+    ],
   },
+
+  // ── Option 8 — Everything for training ───────────────────────────────────
   {
     name: 'Option 8 — Everything for training',
-    description: 'Последнее, но точно не последнее по значимости( да вообще почти первое) - это мои тренировки. Идеальный для меня подарок - это будет подарочный абонемент. Тут я уже не шарю, там можно и полный купить на какой-то срок, я видела еще абонементы на 50% скидку. Это нужно спрашивать в тг лучше, и потом просто прийти по андесу, чтобы тренер подписал. Скажите, что мне) интересно, что скажет. Если будете брать, то берите на 3 занятия в неделю или безлимит на какой-то срок( но это дороговато).'+
-    'Еще можно мне сертификат в магаз, где именно снаряжение для единоборств есть. Мне, например, неплохо бы поменять перчатки и закупиться всевозможной защитой',
+    description:
+      'Последнее, но точно не последнее по значимости (да вообще почти первое) — ' +
+      'это мои тренировки. Идеальный для меня подарок — подарочный абонемент. ' +
+      'Тут я уже не шарю: можно полный купить на какой-то срок, я видела еще ' +
+      'абонементы со скидкой 50%. Это нужно спрашивать в тг лучше, и потом просто ' +
+      'прийти по адресу, чтобы тренер подписал. Скажите, что мне) Интересно, что ' +
+      'скажет. Если будете брать, то берите на 3 занятия в неделю или безлимит ' +
+      'на какой-то срок (но это дороговато)\n' +
+      'Еще можно мне сертификат в магазин, где именно снаряжение для единоборств ' +
+      'есть. Мне, например, неплохо бы поменять перчатки и закупиться всевозможной защитой',
     price: 'ND',
-    links: [ { name: 'Personal Safety Academy', url: 'https://kravmagabelarus.by/' }],
+    links: [
+      { name: 'Personal Safety Academy', url: 'https://kravmagabelarus.by/' },
+    ],
   },
 ];
 
@@ -131,10 +182,8 @@ const DEFAULT_GIFTS = [
    The rest is site code — normally you don't need to change it.
 ============================================================================ */
 
-const STORAGE_KEY = 'wishlist.gifts.v6';
+const STORAGE_KEY = 'wishlist.gifts.v7';
 const ADMIN_KEY = 'wishlist.admin'; // «owner mode» flag in the browser
-// 🔒 owner password — make sure to replace it with your own
-const ADMIN_PASSWORD = 'reputation';
 
 // фоны пунктов — прямые ссылки на фото в хранилище репозитория
 const ITEM_PHOTOS = [
@@ -482,3 +531,4 @@ state.gifts = loadGifts();
 state.admin = localStorage.getItem(ADMIN_KEY) === '1';
 applyAdmin();
 render();
+
