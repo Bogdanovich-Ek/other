@@ -149,7 +149,8 @@ const DEFAULT_GIFTS = [
       'то именно винил, а не CD\n' +
       'Из желаемого:\n' +
       '— Taylor Swift: любой альбом после 2017 включительно, без последнего ( первая ссылка на тгк с очень хорошими ценами )\n' +
-      '— Bad Omens: «The Death Of Peace Of Mind» — уже нашла, ссылки ниже',
+      '— Bad Omens: «The Death Of Peace Of Mind» — уже нашла, ссылки ниже\n'+
+      'Еще проигрыватель для винила не помешал бы ( спешл фо красавчика Егора)',
     price: '200+ BYN',
     links: [
       { name: 'tgk', url: 'https://t.me/usgroove' },
